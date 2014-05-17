@@ -1,0 +1,23 @@
+
+
+<% if flash[:notice] %>
+  <div class="notice-wrapper row">
+    <div class="columns notice">
+      <div data-alert class="alert-box success radius">
+        <%= flash[:notice] %>
+        <a href="#" class="close">&times;</a>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div class="notice-wrapper row">
+    <div class="columns notice">
+      <div data-alert class="alert-box success radius">
+        <%= flash[:alert] %>
+        <a href="#" class="close">&times;</a>
+      </div>
+    </div>
+  </div>
+<% end %>
