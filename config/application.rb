@@ -11,8 +11,6 @@ require "rails/test_unit/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-    Mongoid.configure.migrate_before_tests = true
-
 module Blender
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
