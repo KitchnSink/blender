@@ -6,9 +6,11 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
-  field :username,           type: String, default: ""
-  field :email,              type: String, default: ""
-  field :encrypted_password, type: String, default: ""
+  field :username,            type: String, default: ""
+  field :email,               type: String, default: ""
+  field :encrypted_password,  type: String, default: ""
+  field :provider,            type: String, default: ""
+  field :uid,                 type: String, default: ""
 
   ## Recoverable
   field :reset_password_token,   type: String
@@ -75,7 +77,7 @@ class User
   end
 
   def password_required?
-    super
+    super && provider.blank?
   end
 
   def update_with_password(params, *options)

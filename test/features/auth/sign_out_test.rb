@@ -5,7 +5,7 @@ feature 'As a user
          so that when I leave my information is secure' do
   scenario "user signs in to website, then signs out" do
     # Given I have signed into my account
-    sign_in
+    sign_in('testestst@testtest.com')
 
     # When I click Sign out
     page.find('#header').click_on "Sign Out"

@@ -8,7 +8,7 @@ feature 'As a user
     visit new_user_session_path
 
     # When I register with valid info
-    fill_in "Email", with: "rewt@test.com"
+    fill_in "Email", with: "testestst@testtest.com"
     fill_in "Password", with: "password"
 
     page.find("form").click_on "Sign in"
