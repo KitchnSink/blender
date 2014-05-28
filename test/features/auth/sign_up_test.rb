@@ -9,7 +9,6 @@ feature 'As a user
     visit new_user_registration_path
 
     # When I submit the login form with valid info
-    fill_in "Username", with: "test_test_user"
     fill_in "Email", with: "testestst@testtest.com"
     fill_in "Password", with: "password"
     fill_in "Password confirmation", with: "password"
