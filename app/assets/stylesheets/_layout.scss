@@ -2,7 +2,24 @@
 /* Table of Content
 ==================================================
   #Global Styles
+  #Spacers
 */
 
 /* `Global Styles
 ------------------------------------------- */
+
+
+/* `Spacers
+------------------------------------------- */
+hr[class$=spacer] {
+  border: none;
+  clear: both;
+  float: none;
+  height: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.section-spacer {
+  padding: 0 0 rem-calc(40);
+}
