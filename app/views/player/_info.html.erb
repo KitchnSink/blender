@@ -1,0 +1,11 @@
+<p>
+  <strong>Experience:</strong>
+  <%= player.experience %>
+</p>
+
+<p>
+  <strong>Achievements:</strong>
+  <% player.achievements.each do |achievement| %>
+    <%= achievement %>
+  <% end %>
+</p>

@@ -9,3 +9,5 @@
   <strong>Photo:</strong>
   <%= image_tag @user_profile.photo.url %>
 </p>
+
+<%= render partial: "player/info", locals: {player: @user.player} %>

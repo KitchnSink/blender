@@ -26,7 +26,7 @@ class UserProfilesController < ApplicationController
 
     respond_to do |format|
       if current_user.user_profile = @user_profile
-        format.html { redirect_to 'user_profile', notice: 'User profile was successfully created.' }
+        format.html { redirect_to '/user_profile', notice: 'User profile was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user_profile }
       else
         format.html { render action: 'new' }
@@ -40,7 +40,7 @@ class UserProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @user_profile.update(user_profile_params)
-        format.html { redirect_to @user_profile, notice: 'User profile was successfully updated.' }
+        format.html { redirect_to '/user_profile', notice: 'User profile was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -62,7 +62,8 @@ class UserProfilesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_profile
-      @user_profile = current_user.user_profile
+      @user = current_user
+      @user_profile = @user.user_profile
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

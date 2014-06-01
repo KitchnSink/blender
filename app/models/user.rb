@@ -6,6 +6,7 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   embeds_one :user_profile
+  embeds_one :player
 
   ## Database authenticatable
   field :email,               type: String, default: ""
