@@ -2,22 +2,20 @@ class UserProfilesController < ApplicationController
   before_action :set_user_profile, only: [:new, :show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  # GET /user_profiles/1
-  # GET /user_profiles/1.json
+  # GET /user_profile
+  # GET /user_profile
   def show
     if !@user_profile
       redirect_to '/user_profile/new'
     end
   end
 
-  # GET /user_profiles/new
+  alias_method :edit, :show
+
+  # GET /user_profile/new
   def new
     redirect_to '/user_profile' if @user_profile
     @user_profile = UserProfile.new
-  end
-
-  # GET /user_profiles/1/edit
-  def edit
   end
 
   # POST /user_profiles
