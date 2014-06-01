@@ -25,3 +25,4 @@ coverage
 
 # Ignore the uploads folder
 /public/uploads
+/public/carrierwave
