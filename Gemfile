@@ -45,7 +45,8 @@ gem 'pundit' # Adds policy-based authorization support
 gem 'coveralls', require: false # Coveralls gem for test coverage
 
 gem 'carrierwave' # Handles file uploads
-gem 'rmagick' # Imagemagick gem
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'mini_magick' # Imagemagick gem
 gem 'fog' # Handles Amazon S3 uploads
 gem 'sidekiq' # Handles background queue
 gem 'whenever', :require => false # CRON JOBS

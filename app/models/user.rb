@@ -5,6 +5,9 @@ class User
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  embeds_one :user_profile
+  embeds_one :player
+
   ## Database authenticatable
   field :email,               type: String, default: ""
   field :encrypted_password,  type: String, default: ""

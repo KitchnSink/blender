@@ -1,10 +1,19 @@
 Blender::Application.routes.draw do
 
+  resources :user_profiles
+
+  get 'user_profile' => 'user_profiles#show'
+  get 'user_profile/new' => 'user_profiles#new'
+  get 'user_profile/update' => 'user_profiles#edit'
+
   # Devise callback
   devise_for :users,
     path: '',
     path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'join' },
-    controllers: { omniauth_callbacks: "omniauth_callbacks" }
+    controllers: {
+      omniauth_callbacks: "omniauth_callbacks",
+      registrations: "registrations"
+    }
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
