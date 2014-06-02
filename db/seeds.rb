@@ -33,7 +33,7 @@ User.create({
 
 @lesson = Lesson.create(
   title: 'How to train your dragon.',
-  description: 'Dragons are seriously misunderstood creatures that are capable of building deep bonds with their companions. In this lesson you\'ll learn almost everything you need to know about how to capture, tame, and develop a long-lasting relationship with a dragon.'
+  description: 'Dragons are seriously misunderstood creatures that are capable of building deep bonds with their companions. In this lesson you\'ll learn almost everything you need to know about how to capture, tame, and develop a long-lasting relationship with a dragon.',
   order: 1
 )
 
@@ -114,7 +114,7 @@ User.create({
       'Lorem Ipsum'
     ],
     correct_answer_key: 2,
-    reminders: ['Lorem Ipsum', 'Lorem Ipsum']
+    reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
     hint: @hints[0]
   }),
   Question.create({
@@ -126,7 +126,7 @@ User.create({
       'Lorem Ipsum'
     ],
     correct_answer_key: 1,
-    reminders: ['Lorem Ipsum', 'Lorem Ipsum']
+    reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
     hint: @hints[1]
   }),
   Question.create({
@@ -138,7 +138,7 @@ User.create({
       'Correct Answer'
     ],
     correct_answer_key: 3,
-    reminders: ['Lorem Ipsum', 'Lorem Ipsum']
+    reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
     hint: @hints[2]
   })
 ]

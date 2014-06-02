@@ -26,7 +26,6 @@ class User
   field :current_sign_in_ip, type: String
   field :last_sign_in_ip,    type: String
 
-  validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
 
   ## Confirmable
