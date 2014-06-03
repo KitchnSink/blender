@@ -1,7 +1,6 @@
 class Status
   include Mongoid::Document
-
-  attr_readable :total_experience
+  include Mongoid::Attributes::Dynamic
 
   after_create :get_next_available_lesson
 
@@ -12,13 +11,11 @@ class Status
   embedded_in :player
 
   def total_experience
-    @total_experience = @total_experience || calc_total_experience
+    @calculated_total_experience = @total_experience || calc_total_experience
   end
 
   def calc_total_experience
-    self.experience.inject do |sum, experience|
-      sum + experience.earned
-    end
+    self.experience.pluck(:earned).inject(0, :+)
   end
 
   private
