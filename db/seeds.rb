@@ -94,6 +94,7 @@ User.create({
       Forgery(:lorem_ipsum).title(random: true),
     ],
     correct_answer: 2,
+    experience: 200,
     # reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
     # hint: @hints[0]
   }),
@@ -107,6 +108,7 @@ User.create({
       Forgery(:lorem_ipsum).title(random: true),
     ],
     correct_answer: 1,
+    experience: 200,
     # reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
     # hint: @hints[1]
   }),
@@ -120,6 +122,7 @@ User.create({
       'Correct Answer'
     ],
     correct_answer: 3,
+    experience: 200,
     # reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
     # hint: @hints[2]
   })
@@ -190,6 +193,7 @@ User.create({
       Forgery(:lorem_ipsum).title(random: true),
     ],
     correct_answer: 2,
+    experience: 200,
     # reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
     # hint: @hints[0]
   }),
@@ -203,6 +207,7 @@ User.create({
       Forgery(:lorem_ipsum).title(random: true),
     ],
     correct_answer: 1,
+    experience: 200,
     # reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
     # hint: @hints[1]
   }),
@@ -216,6 +221,7 @@ User.create({
       'Correct Answer'
     ],
     correct_answer: 3,
+    experience: 200,
     # reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
     # hint: @hints[2]
   })
