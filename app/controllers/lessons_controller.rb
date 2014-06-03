@@ -15,6 +15,9 @@ class LessonsController < ApplicationController
   def show
   end
 
+  def summary
+  end
+
   def create
     @lesson = Lesson.new(lesson_params)
 
@@ -66,12 +69,14 @@ class LessonsController < ApplicationController
     end
 
     def find_section
-      redirect_to "#{(url_for @lesson)}/1" unless(params[:section])
+      redirect_to section_lesson_path @lesson, 1 unless(params[:section])
 
-      @section = @lesson.sections.skip(params[:section].to_i - 1).first
+      @section_index = params[:section].to_i ? params[:section].to_i - 1 : 0
+
+      @section = @lesson.sections.skip(@section_index)[0]
 
       if @section.nil?
-        # Do whatever you need here
+        redirect_to section_lesson_path @lesson, 1
       end
     end
 

@@ -1,7 +1,12 @@
 Blender::Application.routes.draw do
 
-  resources :lessons
-  get 'lessons/:id/:section', to: 'lessons#show', as: :lesson_section
+  resources :lessons do
+    post ':section_index/:question_id/answer', to: 'questions#answer', as: :question_answer
+    member do
+      get 'summary', to: 'lessons#summary', as: :summary
+      get ':section', to: 'lessons#show', as: :section
+    end
+  end
 
   resources :user_profiles,
     only: [:new, :create, :edit, :update],

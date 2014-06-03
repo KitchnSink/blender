@@ -12,5 +12,27 @@
     <h4>Question</h4>
     <p><%= @question.body %></p>
 
+    <div class="question-form">
+      <%= form_for([@section, @question],
+          url: lesson_question_answer_path(@lesson.id, @section_index, @question.id),
+          html: {:method => :post}) do |f| %>
+
+          <% @question.answers.each_with_index do |answer, n| %>
+            <div class="field">
+              <div class="radio-button">
+                <%= f.radio_button :answers, n %>
+              </div>
+              <div class="radio-button-label">
+                <%= f.label :answers, answer, value: n %>
+              </div>
+            </div>
+          <% end %>
+
+        <div class="actions">
+          <%= f.submit 'Check My Answer', class: 'button' %>
+        </div>
+      <% end %>
+    </div>
+
   </div>
 </div>
