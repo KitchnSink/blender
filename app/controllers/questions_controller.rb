@@ -8,13 +8,13 @@ class QuestionsController < ApplicationController
     # check if the submitted answer matches the correct one
     if @question.correct_answer == @answer
       # if it does, reward the user all points
-      exp = @question.experiences.new(user: current_user, total: @question.experience, earned: @question.experience)
+      exp = @question.experiences.new(player: current_user.player, total: @question.experience, earned: @question.experience)
       exp.upsert
       # tell them about that
       flash[:success] = "Correct answer!"
     else
       # if it doesn't, reward the user no earned experience points
-      exp = @question.experiences.new(user: current_user, total: @question.experience, earned: 0)
+      exp = @question.experiences.new(player: current_user.player, total: @question.experience, earned: 0)
       exp.upsert
       # take a heart from the user
       current_user.status.decrease_hearts

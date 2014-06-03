@@ -1,9 +1,9 @@
 class Experience
   include Mongoid::Document
-  field :total, type: String
-  field :earned, type: String
+  field :total, type: Integer
+  field :earned, type: Integer
 
-  belongs_to :user
+  belongs_to :player
   belongs_to :experienceable, polymorphic: true
 
   # def experience
