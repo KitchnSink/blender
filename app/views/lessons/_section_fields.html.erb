@@ -1,0 +1,10 @@
+<fieldset class="section">
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+
+  <%= f.label :metadata %>
+  <%= f.text_area :metadata %>
+
+  <%= f.hidden_field :_destroy %>
+  <%= link_to "remove", '#', class: "remove_fields button tiny" %>
+</fieldset>

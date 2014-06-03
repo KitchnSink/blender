@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-  before_action :set_lession, only: [:show, :edit, :update, :destroy]
+  before_action :set_lesson, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
   def index
@@ -8,6 +8,9 @@ class LessonsController < ApplicationController
 
   def new
     @lesson = Lesson.new
+  end
+
+  def show
   end
 
   def create
@@ -52,6 +55,11 @@ class LessonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
+      # params.require(:test_set).permit(:name, tags_attributes: [:id, :name])
+      params.require(:lesson).permit(
+        :title, :body, :order,
+        sections_attributes: [:body, :metadata]
+      )
       # params.require(:lesson).permit(*policy(@lesson || Lesson).permitted_attributes)
     end
 end
