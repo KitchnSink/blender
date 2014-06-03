@@ -1,10 +1,6 @@
 class SectionsController < ApplicationController
-  before_action :set_section, only: [:show, :destroy]
+  before_action :set_section, only: [:destroy]
   before_action :authenticate_user!
-
-  def show
-
-  end
 
   def destroy
     @section.destroy
@@ -24,6 +20,6 @@ class SectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def section_params
-      params.require(:lesson).permit(:body, :metadata, questions_attributes: [:body, :answers, :correct_answer, :experience])
+      params.require(:lesson).permit(:body, :metadata, questions_attributes: [:body, :correct_answer, :experience, answers_attributes: [:body]])
     end
 end

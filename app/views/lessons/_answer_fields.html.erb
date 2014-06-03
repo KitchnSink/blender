@@ -1,0 +1,6 @@
+<fieldset class="answer"  id="<%= f.object.id %>">
+  <%= f.label :body, 'Answer' %>
+  <%= f.text_area :body %>
+
+  <%= link_to "Remove Answer", lesson_section_question_answer_path(@lesson.id, section, question, f.object.id), :confirm => "Are you sure you want to delete this section?", :method => :delete, :remote => true, class: "remove_fields right" %>
+</fieldset>

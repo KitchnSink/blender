@@ -5,6 +5,14 @@
   <%= f.label :experience %>
   <%= f.number_field :experience %>
 
+  <fieldset>
+    <legend>Answers</legend>
+    <%= f.fields_for :answers do |builder| %>
+      <% render partial: "answer_fields", locals: {f: builder, section: parent, question: f.object.id} %>
+    <% end %>
+    <%= link_to_add_fields "Add Answer", f, :answers, {section: parent, question: f.object.id} %>
+  </fieldset>
+
   <%= f.label :correct_answer %>
   <%= f.number_field :correct_answer %>
 

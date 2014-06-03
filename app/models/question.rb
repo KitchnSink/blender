@@ -8,5 +8,7 @@ class Question
 
   embedded_in :section
   embeds_many :answers
-  has_many :experiences, as: :experienceable
+  # has_many :experiences, as: :experienceable
+
+  accepts_nested_attributes_for :answers, allow_destory: true
 end
