@@ -10,6 +10,6 @@
 
   <div class="columns large-3">
     <h4><%= @lesson.title %></h4>
-    <h4><%= truncate @lesson.body, 50 %></h4>
+    <h4><%= truncate @lesson.body, length: 50 %></h4>
   </div>
 </div>

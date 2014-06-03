@@ -1,13 +1,12 @@
-<fieldset class="question">
-  field :text, type: String
-  field :answers, type: Array
-  field :correct_answer, type: Integer
-  <%= f.label :text %>
-  <%= f.text_area :text %>
+<fieldset class="question"  id="<%= f.object.id %>">
+  <%= f.label :body, 'Question' %>
+  <%= f.text_area :body %>
 
+  <%= f.label :experience %>
+  <%= f.number_field :experience %>
 
+  <%= f.label :correct_answer %>
+  <%= f.number_field :correct_answer %>
 
-  <%= f.hidden_field :_destroy %>
-
-  <%= link_to "remove", '#', class: "remove_fields button tiny" %>
+  <%= link_to "Remove Question", lesson_section_question_path(@lesson.id, parent, f.object.id), :confirm => "Are you sure you want to delete this section?", :method => :delete, :remote => true, class: "remove_fields right" %>
 </fieldset>
