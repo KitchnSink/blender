@@ -1,8 +1,10 @@
 class SectionsController < ApplicationController
   before_action :set_section, only: [:destroy]
   before_action :authenticate_user!
+  after_action :verify_authorized
 
   def destroy
+    authorize @section
     @section.destroy
     respond_to do |format|
       format.html { redirect_to edit_lesson_path(@lesson) }
@@ -20,6 +22,6 @@ class SectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def section_params
-      params.require(:lesson).permit(:body, :metadata, questions_attributes: [:body, :correct_answer, :experience, answers_attributes: [:body]])
+      params.require(:section).permit(*policy(@section || Section).permitted_attributes)
     end
 end

@@ -1,6 +1,7 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  after_action :verify_authorized, :except => [:index, :show]
   before_action :find_section, only: [:show]
   before_action :find_question, only: [:show]
 
@@ -10,6 +11,7 @@ class LessonsController < ApplicationController
 
   def new
     @lesson = Lesson.new
+    authorize @lesson
   end
 
   def show
@@ -19,10 +21,12 @@ class LessonsController < ApplicationController
   end
 
   def edit
+    authorize @lesson
   end
 
   def create
     @lesson = Lesson.new(lesson_params)
+    authorize @lesson
 
     respond_to do |format|
       if @lesson.save
@@ -36,7 +40,7 @@ class LessonsController < ApplicationController
   end
 
   def update
-    puts @lesson
+    authorize @lesson
     respond_to do |format|
       if @lesson.update(lesson_params)
         format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
@@ -49,6 +53,7 @@ class LessonsController < ApplicationController
   end
 
   def destroy
+    authorize @lesson
     @lesson.destroy
     respond_to do |format|
       format.html { redirect_to lessons_url }
@@ -64,18 +69,7 @@ class LessonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
-      # params.require(:test_set).permit(:name, tags_attributes: [:id, :name])
-      params.require(:lesson).permit(
-        :title, :body, :order,
-        sections_attributes: [
-          :id, :body, :metadata, :_destroy, :lesson_id,
-          questions_attributes: [
-            :body, :correct_answer, :experience,
-            answers_attributes: [:body]
-          ]
-        ]
-      )
-      # params.require(:lesson).permit(*policy(@lesson || Lesson).permitted_attributes)
+      params.require(:lesson).permit(*policy(@lesson || Lesson).permitted_attributes)
     end
 
     def find_section
