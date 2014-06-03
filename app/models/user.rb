@@ -17,7 +17,7 @@ class User
   field :uid,                 type: String, default: ""
   field :role,                type: String, default: ""
 
-  attr_readonly :status, :gamedata
+  attr_readonly :status, :gamedata, :experience
 
   ## Recoverable
   field :reset_password_token,   type: String
@@ -68,6 +68,10 @@ class User
 
   def gamedata
     self.player.gamedata
+  end
+
+  def experience
+    self.player.experience
   end
 
   def self.from_omniauth(auth)

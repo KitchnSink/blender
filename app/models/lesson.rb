@@ -10,7 +10,7 @@ class Lesson
   field :order, type: String, default: 1
   field :_id, type: String, default: ->{ title.to_s.parameterize }
 
-  attr_readonly :experience
+  attr_readonly :experience, :questions
 
   embeds_many :sections
   has_many :experiences, as: :experienceable
@@ -18,6 +18,10 @@ class Lesson
   accepts_nested_attributes_for :sections, allow_destory: true
 
   validates :title, uniqueness: true
+
+  def questions
+    self.sections.pluck(:questions)
+  end
 
   def experience
     @calculated_experience = @calculated_experience || self.sections.pluck(:experience).inject(0, :+)

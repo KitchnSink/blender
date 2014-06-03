@@ -10,6 +10,11 @@ class Status
 
   embedded_in :player
 
+  def decrease_hearts n = 1
+    self.total_hearts = self.total_hearts - n
+    self.save
+  end
+
   def total_experience
     @calculated_total_experience = @total_experience || calc_total_experience
   end
