@@ -6,7 +6,7 @@ class UserProfilesController < ApplicationController
   # GET /user_profile
   def show
     if !@user_profile
-      redirect_to '/user_profile/new'
+      redirect_to new_user_profile_path
     end
   end
 

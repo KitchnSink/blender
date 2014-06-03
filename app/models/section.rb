@@ -4,5 +4,5 @@ class Section
   field :metadata, type: String
 
   embeds_many :questions
-  belongs_to :lesson
+  embedded_in :lesson
 end
