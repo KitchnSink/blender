@@ -1,11 +1,14 @@
-<p>
-  <strong>Experience:</strong>
-  <%= player.experience %>
-</p>
-
-<p>
-  <strong>Achievements:</strong>
-  <% player.achievements.each do |achievement| %>
-    <%= achievement %>
-  <% end %>
-</p>
+<div class="row">
+  <div class="small-12">
+    <div class="profile-experience"><%= player.experience %></div>
+  </div>
+  <div class="small-12">
+    <div class="profile-achievements">
+      <% player.achievements.each do |achievement| %>
+        <div class="achievement">
+          <%= achievement %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

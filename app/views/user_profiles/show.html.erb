@@ -1,13 +1,12 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Gamertag:</strong>
-  <%= @user_profile.gamertag %>
-</p>
-
-<p>
-  <strong>Photo:</strong>
-  <%= image_tag @user_profile.photo.url %>
-</p>
+<div class="row">
+  <div class="small-12">
+    <div class="profile-photo">
+      <%= image_tag @user_profile.photo.thumb.url %>
+    </div>
+    <div class="profile-gamertag">
+      <%= @user_profile.gamertag %>
+    </div>
+  </div>
+</div>
 
 <%= render partial: "player/info", locals: {player: @user.player} %>
