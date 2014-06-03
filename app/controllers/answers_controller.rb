@@ -1,8 +1,10 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:destroy]
   before_action :authenticate_user!
+  after_action :verify_authorized
 
   def destroy
+    authorize @answer
     @answer.destroy
     respond_to do |format|
       format.html { redirect_to edit_lesson_path(@lesson) }
@@ -22,6 +24,6 @@ class AnswersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params.require(:lesson).permit(:body)
+      params.require(:answer).permit(*policy(@answer || Answer).permitted_attributes)
     end
 end
