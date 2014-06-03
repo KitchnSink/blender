@@ -1,0 +1,3 @@
+class SectionPolicy < LessonPolicy
+
+end

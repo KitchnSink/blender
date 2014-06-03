@@ -1,8 +1,10 @@
 class SectionsController < ApplicationController
   before_action :set_section, only: [:destroy]
   before_action :authenticate_user!
+  after_action :verify_authorized
 
   def destroy
+    authorize @section
     @section.destroy
     respond_to do |format|
       format.html { redirect_to edit_lesson_path(@lesson) }

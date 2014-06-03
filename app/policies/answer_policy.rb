@@ -1,0 +1,3 @@
+class AnswerPolicy < LessonPolicy
+
+end

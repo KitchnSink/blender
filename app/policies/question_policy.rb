@@ -1,0 +1,3 @@
+class QuestionPolicy < LessonPolicy
+
+end

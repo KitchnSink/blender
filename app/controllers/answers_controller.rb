@@ -1,8 +1,10 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:destroy]
   before_action :authenticate_user!
+  after_action :verify_authorized
 
   def destroy
+    authorize @answer
     @answer.destroy
     respond_to do |format|
       format.html { redirect_to edit_lesson_path(@lesson) }

@@ -52,6 +52,10 @@ class User
     true
   end
 
+  def admin?
+    self.role == 'admin'
+  end
+
   def author?
     self.role == 'author'
   end
