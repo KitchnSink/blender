@@ -2,11 +2,11 @@ class Status
   include Mongoid::Document
   include Mongoid::Attributes::Dynamic
 
-  after_create :get_next_available_lesson
+  after_initialize :add_next_available_lesson
 
   field :total_hearts, type: Integer, default: 10
   field :max_hearts, type: Integer, default: 10
-  field :next_available_lesson, type: Integer
+  field :next_available_lesson, type: String
 
   embedded_in :player
 
@@ -21,6 +21,6 @@ class Status
   private
 
     def add_next_available_lesson
-      self.next_available_lesson = Lesson.first.id
+      self.next_available_lesson = Lesson.order_by(:order.asc).first.id.to_s
     end
 end
