@@ -1,8 +1,10 @@
 Blender::Application.routes.draw do
 
   resources :lessons do
-    resources :sections, only: [:show, :destroy] do
-      resources :questions, only: [:show, :destroy]
+    resources :sections, only: [:destroy] do
+      resources :questions, only: [:destroy] do
+        resources :answers, only: [:destroy]
+      end
     end
   end
 
