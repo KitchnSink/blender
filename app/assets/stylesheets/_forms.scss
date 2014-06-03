@@ -1,0 +1,16 @@
+
+.field {
+  padding-bottom: rem-calc(10);
+
+  .radio-button {
+    display: inline-block;
+    vertical-align: middle;
+    width: 5%;
+  }
+
+  .radio-button-label {
+    display: inline-block;
+    vertical-align: middle;
+    width: 92%;
+  }
+}

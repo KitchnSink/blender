@@ -15,7 +15,7 @@ User.create({
 @lesson = Lesson.create(
   title: 'How to train your dragon.',
   body: 'Dragons are seriously misunderstood creatures that are capable of building deep bonds with their companions. In this lesson you\'ll learn almost everything you need to know about how to capture, tame, and develop a long-lasting relationship with a dragon.',
-  order: 1
+  order: 0
 )
 
 # @terms = [
@@ -50,20 +50,20 @@ User.create({
 @sections = [
   Section.create({
     lesson: @lesson,
-    body: 'Lorem Ipsum',
-    metadata: 'Lorem Ipsum',
+    body: Forgery(:lorem_ipsum).paragraphs(4, random: true),
+    metadata: Forgery(:lorem_ipsum).words(20, random: true),
     #terms: @terms[0]
   }),
   Section.create({
     lesson: @lesson,
-    body: 'Lorem Ipsum',
-    metadata: 'Lorem Ipsum',
+    body: Forgery(:lorem_ipsum).paragraphs(4, random: true),
+    metadata: Forgery(:lorem_ipsum).words(20, random: true),
     #terms: @terms[1]
   }),
   Section.create({
     lesson: @lesson,
-    body: 'Lorem Ipsum',
-    metadata: 'Lorem Ipsum',
+    body: Forgery(:lorem_ipsum).paragraphs(4, random: true),
+    metadata: Forgery(:lorem_ipsum).words(20, random: true),
     #terms: @terms[2]
   }),
 ]
@@ -86,40 +86,43 @@ User.create({
 @questions = [
   Question.create({
     section: @sections[0],
-    body: 'Question 1',
+    body: Forgery(:lorem_ipsum).title(random: true),
     answers: [
-      'Lorem Ipsum',
-      'Lorem Ipsum',
-      'Correct Answer',
-      'Lorem Ipsum'
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
+      Answer.new(body: 'Correct Answer'),
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
     ],
     correct_answer: 2,
+    experience: 200,
     # reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
     # hint: @hints[0]
   }),
   Question.create({
     section: @sections[1],
-    body: 'Question 2',
+    body: Forgery(:lorem_ipsum).title(random: true),
     answers: [
-      'Lorem Ipsum',
-      'Correct Answer',
-      'Lorem Ipsum',
-      'Lorem Ipsum'
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
+      Answer.new(body: 'Correct Answer'),
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
     ],
     correct_answer: 1,
+    experience: 200,
     # reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
     # hint: @hints[1]
   }),
   Question.create({
     section: @sections[2],
-    body: 'Question 3',
+    body: Forgery(:lorem_ipsum).title(random: true),
     answers: [
-      'Lorem Ipsum',
-      'Lorem Ipsum',
-      'Lorem Ipsum',
-      'Correct Answer'
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
+      Answer.new(body: 'Correct Answer'),
     ],
     correct_answer: 3,
+    experience: 200,
     # reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
     # hint: @hints[2]
   })
@@ -153,28 +156,28 @@ User.create({
 
 
 @lesson = Lesson.create(
-  title: Forgery(:lorem_ipsum).words(8),
-  body: Forgery(:lorem_ipsum).words(100),
-  order: 1
+  title: Forgery(:lorem_ipsum).title(random: true),
+  body: Forgery(:lorem_ipsum).sentences(4, random: true),
+  order: (n + 1)
 )
 
 @sections = [
   Section.create({
     lesson: @lesson,
-    body: Forgery(:lorem_ipsum).words(50),
-    metadata: Forgery(:lorem_ipsum).words(20),
+    body: Forgery(:lorem_ipsum).paragraphs(4, random: true),
+    metadata: Forgery(:lorem_ipsum).words(20, random: true),
     #terms: @terms[0]
   }),
   Section.create({
     lesson: @lesson,
-    body: Forgery(:lorem_ipsum).words(50),
-    metadata: Forgery(:lorem_ipsum).words(20),
+    body: Forgery(:lorem_ipsum).paragraphs(2, random: true),
+    metadata: Forgery(:lorem_ipsum).words(20, random: true),
     #terms: @terms[1]
   }),
   Section.create({
     lesson: @lesson,
-    body: Forgery(:lorem_ipsum).words(50),
-    metadata: Forgery(:lorem_ipsum).words(20),
+    body: Forgery(:lorem_ipsum).paragraphs(3, random: true),
+    metadata: Forgery(:lorem_ipsum).words(20, random: true),
     #terms: @terms[2]
   }),
 ]
@@ -182,40 +185,43 @@ User.create({
 @questions = [
   Question.create({
     section: @sections[0],
-    body: 'Question 1',
+    body: Forgery(:lorem_ipsum).title(random: true),
     answers: [
-      Forgery(:lorem_ipsum).words(10),
-      Forgery(:lorem_ipsum).words(10),
-      'Correct Answer',
-      Forgery(:lorem_ipsum).words(10),
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
+      Answer.new(body: 'Correct Answer'),
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
     ],
     correct_answer: 2,
+    experience: 200,
     # reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
     # hint: @hints[0]
   }),
   Question.create({
     section: @sections[1],
-    body: 'Question 2',
+    body: Forgery(:lorem_ipsum).title(random: true),
     answers: [
-      Forgery(:lorem_ipsum).words(10),
-      'Correct Answer',
-      Forgery(:lorem_ipsum).words(10),
-      Forgery(:lorem_ipsum).words(10),
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
+      Answer.new(body: 'Correct Answer'),
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
     ],
     correct_answer: 1,
+    experience: 200,
     # reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
     # hint: @hints[1]
   }),
   Question.create({
     section: @sections[2],
-    body: 'Question 3',
+    body: Forgery(:lorem_ipsum).title(random: true),
     answers: [
-      Forgery(:lorem_ipsum).words(10),
-      Forgery(:lorem_ipsum).words(10),
-      Forgery(:lorem_ipsum).words(10),
-      'Correct Answer'
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
+      Answer.new(body: Forgery(:lorem_ipsum).title(random: true)),
+      Answer.new(body: 'Correct Answer'),
     ],
     correct_answer: 3,
+    experience: 200,
     # reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
     # hint: @hints[2]
   })

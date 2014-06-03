@@ -17,6 +17,8 @@ class User
   field :uid,                 type: String, default: ""
   field :role,                type: String, default: ""
 
+  attr_readonly :status, :gamedata, :experience
+
   ## Recoverable
   field :reset_password_token,   type: String
   field :reset_password_sent_at, type: Time
@@ -64,6 +66,18 @@ class User
     self.role == 'editor'
   end
 
+  def status
+    self.player.status
+  end
+
+  def gamedata
+    self.player.gamedata
+  end
+
+  def experience
+    self.player.experience
+  end
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider
@@ -98,7 +112,6 @@ class User
   private
 
     def add_player
-      p 'test'
       self.player = Player.new
     end
 

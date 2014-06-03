@@ -8,6 +8,15 @@ GIT
       origin (~> 2.1)
       tzinfo (>= 0.3.37)
 
+GIT
+  remote: git://github.com/mongoid/moped.git
+  revision: a44b4e1e0ee2bc00ad5a3fef937cdf1b15af072e
+  specs:
+    moped (2.0.0.rc1)
+      bson (~> 2.2)
+      connection_pool (~> 2.0)
+      optionable (~> 0.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -151,10 +160,6 @@ GEM
     mongoid-grid_fs (2.1.0)
       mime-types (>= 1.0, < 3.0)
       mongoid (>= 3.0, < 5.0)
-    moped (2.0.0.rc1)
-      bson (~> 2.2)
-      connection_pool (~> 2.0)
-      optionable (~> 0.2.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -303,6 +308,7 @@ DEPENDENCIES
   minitest-rails
   minitest-rails-capybara
   mongoid!
+  moped!
   omniauth
   omniauth-facebook
   omniauth-twitter

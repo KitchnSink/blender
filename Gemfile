@@ -25,6 +25,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'mongoid', github: 'mongoid/mongoid' # Use MongoDB
+gem 'moped', github: 'mongoid/moped'
 
 gem "spring", group: :development # Keeps app running in the background
 

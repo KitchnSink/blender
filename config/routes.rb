@@ -1,6 +1,12 @@
 Blender::Application.routes.draw do
 
   resources :lessons do
+    post ':section_index/:question_id/answer', to: 'questions#answer', as: :question_answer
+    member do
+      get 'summary', to: 'lessons#summary', as: :summary
+      get ':section', to: 'lessons#show', as: :section
+    end
+
     resources :sections, only: [:destroy] do
       resources :questions, only: [:destroy] do
         resources :answers, only: [:destroy]

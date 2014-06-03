@@ -3,6 +3,8 @@ class Section
   field :body, type: String
   field :metadata, type: String
 
+  attr_readonly :experience
+
   embeds_many :questions
   embedded_in :lesson
 

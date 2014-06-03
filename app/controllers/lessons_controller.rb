@@ -1,7 +1,9 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
-  after_action :verify_authorized, :except => [:index, :show]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :new, :create]
+  after_action :verify_authorized, only: [:edit, :update, :destroy, :new, :create]
+  before_action :find_section, only: [:show]
+  before_action :find_question, only: [:show]
 
   def index
     @lessons = Lesson.all
@@ -13,6 +15,9 @@ class LessonsController < ApplicationController
   end
 
   def show
+  end
+
+  def summary
   end
 
   def edit
@@ -65,5 +70,21 @@ class LessonsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
       params.require(:lesson).permit(*policy(@lesson || Lesson).permitted_attributes)
+    end
+
+    def find_section
+      redirect_to section_lesson_path @lesson, 1 unless(params[:section])
+
+      @section_index = params[:section].to_i ? params[:section].to_i - 1 : 0
+
+      @section = @lesson.sections.skip(@section_index)[0]
+
+      if @section.nil?
+        redirect_to section_lesson_path @lesson, 1
+      end
+    end
+
+    def find_question
+      @question = @section.questions.first
     end
 end

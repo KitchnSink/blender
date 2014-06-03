@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:destroy]
   after_action :verify_authorized
 
   def destroy

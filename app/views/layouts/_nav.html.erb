@@ -27,6 +27,15 @@
             </li>
           <% else %>
             <li>
+              <a href="<%= user_profiles_path %>">
+                <span class="user-hearts">
+                  <span class="pictos">k</span>
+                  <span class="value"><%= current_user.status.total_hearts %></span>
+                </span>
+              </a>
+            </li>
+            <li><i class="icon_divider  fi-asterisk size-12"></i></li>
+            <li>
               <%= link_to "Sign Out", destroy_user_session_path, method: "delete" %>
             </li>
           <% end %>

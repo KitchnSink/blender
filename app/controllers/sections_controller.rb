@@ -1,6 +1,6 @@
 class SectionsController < ApplicationController
   before_action :set_section, only: [:destroy]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:destroy]
   after_action :verify_authorized
 
   def destroy
