@@ -24,6 +24,6 @@ class AnswersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params.require(:lesson).permit(:body)
+      params.require(:answer).permit(*policy(@answer || Answer).permitted_attributes)
     end
 end

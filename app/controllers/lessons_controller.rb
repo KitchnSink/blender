@@ -64,17 +64,6 @@ class LessonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
-      # params.require(:test_set).permit(:name, tags_attributes: [:id, :name])
-      params.require(:lesson).permit(
-        :title, :body, :order,
-        sections_attributes: [
-          :id, :body, :metadata, :_destroy, :lesson_id,
-          questions_attributes: [
-            :body, :correct_answer, :experience,
-            answers_attributes: [:body]
-          ]
-        ]
-      )
-      # params.require(:lesson).permit(*policy(@lesson || Lesson).permitted_attributes)
+      params.require(:lesson).permit(*policy(@lesson || Lesson).permitted_attributes)
     end
 end
