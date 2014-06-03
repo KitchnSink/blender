@@ -147,7 +147,24 @@ User.create({
 Experience.create({
   total: 100,
   type: :question,
-  polymorphic_ids: [@questions[0].id, @questions[1].id, @questions[2].id]
+  polymorphic_ids: @questions[0].id,
+  user: @player_user.id
+})
+
+# add experience to questions
+Experience.create({
+  total: 100,
+  type: :question,
+  polymorphic_ids: @questions[1].id,
+  user: @player_user.id
+})
+
+# add experience to questions
+Experience.create({
+  total: 100,
+  type: :question,
+  polymorphic_ids: @questions[2].id,
+  user: @player_user.id
 })
 
 Challenge.create({
