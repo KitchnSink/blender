@@ -20,7 +20,7 @@ $(function(){
   $(document).foundation();
 
   $('form').on('click', '.remove_fields', function(event) {
-    $(this).prev('input[type=hidden]').val('1');
+    $(this).prev('input[type=hidden]').val('true');
     $(this).closest('fieldset').hide();
     event.preventDefault();
   });

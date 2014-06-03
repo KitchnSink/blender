@@ -5,6 +5,6 @@
   <%= f.label :metadata %>
   <%= f.text_area :metadata %>
 
-  <%= f.hidden_field :_destroy %>
+  <%= f.hidden_field :_destroy, :value => f.object._destroy %>
   <%= link_to "remove", '#', class: "remove_fields button tiny" %>
 </fieldset>

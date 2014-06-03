@@ -3,6 +3,6 @@ class Section
   field :body, type: String
   field :metadata, type: String
 
-  embeds_many :questions
+  has_many :questions
   belongs_to :lesson
 end
