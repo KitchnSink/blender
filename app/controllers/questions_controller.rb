@@ -1,8 +1,20 @@
 class QuestionsController < ApplicationController
-  before_action :set_lesson, only: [:answer]
-  before_action :set_section, only: [:answer]
-  before_action :set_question, only: [:answer]
+  before_action :set_question, only: [:destroy]
+  before_action :authenticate_user!
+  before_action :set_lesson, only: [:destroy, :answer]
+  before_action :set_section, only: [:destroy]
+  before_action :set_section_from_index, only: [:answer]
+  before_action :set_question, only: [:destroy, :answer]
   before_action :set_answer, only: [:answer]
+
+  def destroy
+    @question.destroy
+    respond_to do |format|
+      format.html { redirect_to edit_lesson_path(@lesson) }
+      format.json { head :no_content }
+      format.js {}
+    end
+  end
 
   def answer
     # check if the submitted answer matches the correct one
@@ -38,6 +50,11 @@ class QuestionsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_section
+      @section = @lesson.sections.find(params[:section_id])
+    end
+
+    # Use callbacks to share common setup or constraints between actions.
+    def set_section_from_index
       @section_index = params[:section_index].to_i
       @section = @lesson.sections.skip(@section_index)[0]
     end
@@ -58,4 +75,8 @@ class QuestionsController < ApplicationController
       )
     end
 
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def question_params
+      params.require(:lesson).permit(:body, :correct_answer, :experience, answers_attributes: [:body])
+    end
 end

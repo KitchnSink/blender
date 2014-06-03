@@ -6,6 +6,12 @@ Blender::Application.routes.draw do
       get 'summary', to: 'lessons#summary', as: :summary
       get ':section', to: 'lessons#show', as: :section
     end
+
+    resources :sections, only: [:destroy] do
+      resources :questions, only: [:destroy] do
+        resources :answers, only: [:destroy]
+      end
+    end
   end
 
   resources :user_profiles,

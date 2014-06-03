@@ -1,13 +1,20 @@
-<fieldset class="question">
-  field :text, type: String
-  field :answers, type: Array
-  field :correct_answer, type: Integer
-  <%= f.label :text %>
-  <%= f.text_area :text %>
+<fieldset class="question"  id="<%= f.object.id %>">
+  <%= f.label :body, 'Question' %>
+  <%= f.text_area :body %>
 
+  <%= f.label :experience %>
+  <%= f.number_field :experience %>
 
+  <fieldset>
+    <legend>Answers</legend>
+    <%= f.fields_for :answers do |builder| %>
+      <% render partial: "answer_fields", locals: {f: builder, section: parent, question: f.object.id} %>
+    <% end %>
+    <%= link_to_add_fields "Add Answer", f, :answers, {section: parent, question: f.object.id} %>
+  </fieldset>
 
-  <%= f.hidden_field :_destroy %>
+  <%= f.label :correct_answer %>
+  <%= f.number_field :correct_answer %>
 
-  <%= link_to "remove", '#', class: "remove_fields button tiny" %>
+  <%= link_to "Remove Question", lesson_section_question_path(@lesson.id, parent, f.object.id), :confirm => "Are you sure you want to delete this section?", :method => :delete, :remote => true, class: "remove_fields right" %>
 </fieldset>
