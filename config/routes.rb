@@ -1,11 +1,11 @@
 Blender::Application.routes.draw do
 
   get "dashboard/index"
-  resources :user_profiles
+  resources :user_profiles,
+    only: [:new, :create, :edit, :update],
+    path: 'profile'
 
-  get 'user_profile' => 'user_profiles#show'
-  get 'user_profile/new' => 'user_profiles#new'
-  get 'user_profile/update' => 'user_profiles#edit'
+  get 'profile' => 'user_profiles#show'
 
   # Devise callback
   devise_for :users,
