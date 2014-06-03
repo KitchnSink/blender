@@ -10,7 +10,7 @@ class Player
   has_many :experience, validate: false
 
   def total_experience
-    self.experience.
+    # self.experience.
   end
 
   private

@@ -1,0 +1,13 @@
+<fieldset class="question">
+  field :text, type: String
+  field :answers, type: Array
+  field :correct_answer, type: Integer
+  <%= f.label :text %>
+  <%= f.text_area :text %>
+
+
+
+  <%= f.hidden_field :_destroy %>
+
+  <%= link_to "remove", '#', class: "remove_fields button tiny" %>
+</fieldset>

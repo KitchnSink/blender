@@ -1,6 +1,6 @@
 Blender::Application.routes.draw do
 
-  get "dashboard/index"
+  resources :lessons
   resources :user_profiles,
     only: [:new, :create, :edit, :update],
     path: 'profile'
