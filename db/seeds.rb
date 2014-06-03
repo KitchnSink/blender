@@ -12,15 +12,9 @@ User.create({
   role: 'authenticated'
 })
 
-@player_user = User.create({
-  email: 'player@user_test.com',
-  encrypted_password: User.new.send(:password_digest, 'password'),
-  role: 'authenticated'
-})
-
 @lesson = Lesson.create(
   title: 'How to train your dragon.',
-  description: 'Dragons are seriously misunderstood creatures that are capable of building deep bonds with their companions. In this lesson you\'ll learn almost everything you need to know about how to capture, tame, and develop a long-lasting relationship with a dragon.',
+  body: 'Dragons are seriously misunderstood creatures that are capable of building deep bonds with their companions. In this lesson you\'ll learn almost everything you need to know about how to capture, tame, and develop a long-lasting relationship with a dragon.',
   order: 1
 )
 
@@ -155,3 +149,83 @@ User.create({
 #   description: 'You finished the lesson "How to Train Your Dragon"!'
 # })
 
+20.times.each do |n|
+
+
+@lesson = Lesson.create(
+  title: Forgery(:lorem_ipsum).words(8),
+  body: Forgery(:lorem_ipsum).words(100),
+  order: 1
+)
+
+@sections = [
+  Section.create({
+    lesson: @lesson,
+    body: Forgery(:lorem_ipsum).words(50),
+    metadata: Forgery(:lorem_ipsum).words(20),
+    #terms: @terms[0]
+  }),
+  Section.create({
+    lesson: @lesson,
+    body: Forgery(:lorem_ipsum).words(50),
+    metadata: Forgery(:lorem_ipsum).words(20),
+    #terms: @terms[1]
+  }),
+  Section.create({
+    lesson: @lesson,
+    body: Forgery(:lorem_ipsum).words(50),
+    metadata: Forgery(:lorem_ipsum).words(20),
+    #terms: @terms[2]
+  }),
+]
+
+@questions = [
+  Question.create({
+    section: @sections[0],
+    body: 'Question 1',
+    answers: [
+      Forgery(:lorem_ipsum).words(10),
+      Forgery(:lorem_ipsum).words(10),
+      'Correct Answer',
+      Forgery(:lorem_ipsum).words(10),
+    ],
+    correct_answer: 2,
+    # reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
+    # hint: @hints[0]
+  }),
+  Question.create({
+    section: @sections[1],
+    body: 'Question 2',
+    answers: [
+      Forgery(:lorem_ipsum).words(10),
+      'Correct Answer',
+      Forgery(:lorem_ipsum).words(10),
+      Forgery(:lorem_ipsum).words(10),
+    ],
+    correct_answer: 1,
+    # reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
+    # hint: @hints[1]
+  }),
+  Question.create({
+    section: @sections[2],
+    body: 'Question 3',
+    answers: [
+      Forgery(:lorem_ipsum).words(10),
+      Forgery(:lorem_ipsum).words(10),
+      Forgery(:lorem_ipsum).words(10),
+      'Correct Answer'
+    ],
+    correct_answer: 3,
+    # reminders: ['Lorem Ipsum', 'Lorem Ipsum'],
+    # hint: @hints[2]
+  })
+]
+
+end
+
+# create the player user after all lessons have been created
+@player_user = User.create({
+  email: 'player@user_test.com',
+  encrypted_password: User.new.send(:password_digest, 'password'),
+  role: 'authenticated'
+})

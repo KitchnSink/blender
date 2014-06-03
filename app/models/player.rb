@@ -17,7 +17,7 @@ class Player
 
     def add_status
       # create player status object with defaults
-      self.status.create
+      self.status = Status.new
     end
 
 end

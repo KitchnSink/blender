@@ -5,6 +5,8 @@ class User
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  after_create :add_player
+
   embeds_one :user_profile
   embeds_one :player
 
@@ -88,5 +90,12 @@ class User
       super
     end
   end
+
+  private
+
+    def add_player
+      p 'test'
+      self.player = Player.new
+    end
 
 end

@@ -31,6 +31,7 @@ gem "spring", group: :development # Keeps app running in the background
 gem 'foundation-rails' # Adds foundation
 
 gem 'redcarpet' # Markdown parser
+gem 'forgery'
 
 gem 'minitest-rails' # Adds mini-test framework
 

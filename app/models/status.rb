@@ -6,8 +6,8 @@ class Status
 
   field :total_hearts, type: Integer, default: 10
   field :max_hearts, type: Integer, default: 10
+  field :next_available_lesson, type: Integer
 
-  has_one :next_available_lesson, class_name: "Lesson"
   embedded_in :player
 
   def total_experience
@@ -21,6 +21,6 @@ class Status
   private
 
     def add_next_available_lesson
-      self.next_available_lesson = Lesson.first
+      self.next_available_lesson = Lesson.first.id
     end
 end
