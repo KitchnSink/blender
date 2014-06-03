@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!
-  after_action :verify_authorized
+  after_action :verify_authorized, only: [:destroy]
   before_action :set_lesson, only: [:destroy, :answer]
   before_action :set_section, only: [:destroy]
   before_action :set_section_from_index, only: [:answer]

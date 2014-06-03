@@ -1,7 +1,7 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
-  after_action :verify_authorized, :except => [:index, :show]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :new, :create]
+  after_action :verify_authorized, only: [:edit, :update, :destroy, :new, :create]
   before_action :find_section, only: [:show]
   before_action :find_question, only: [:show]
 
