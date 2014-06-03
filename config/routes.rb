@@ -1,6 +1,8 @@
 Blender::Application.routes.draw do
 
   resources :lessons
+  get 'lessons/:id/:section', to: 'lessons#show', as: :lesson_section
+
   resources :user_profiles,
     only: [:new, :create, :edit, :update],
     path: 'profile'

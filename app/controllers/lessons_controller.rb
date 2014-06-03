@@ -1,6 +1,8 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :find_section, only: [:show]
+  before_action :find_question, only: [:show]
 
   def index
     @lessons = Lesson.all
@@ -61,5 +63,19 @@ class LessonsController < ApplicationController
         sections_attributes: [:body, :metadata]
       )
       # params.require(:lesson).permit(*policy(@lesson || Lesson).permitted_attributes)
+    end
+
+    def find_section
+      redirect_to "#{(url_for @lesson)}/1" unless(params[:section])
+
+      @section = @lesson.sections.skip(params[:section].to_i - 1).first
+
+      if @section.nil?
+        # Do whatever you need here
+      end
+    end
+
+    def find_question
+      @question = @section.questions.first
     end
 end
