@@ -5,10 +5,10 @@
 
     <% if lesson_is_available lesson.id %>
     <a href="<%= url_for lesson %>">
-      <%= render 'lesson_image' %>
+      <%= render 'lessons/lesson_image', lesson: lesson %>
     </a>
     <% else %>
-      <%= render 'lesson_image' %>
+      <%= render 'lessons/lesson_image', lesson: lesson %>
     <% end %>
 
   </div>
