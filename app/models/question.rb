@@ -5,6 +5,6 @@ class Question
   field :correct_answer, type: Integer
   # field :reminders, type: String
 
-  embedded_by :section
+  # embedded_by :section
   has_many :experiences, as: :experienceable
 end

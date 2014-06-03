@@ -1,5 +1,6 @@
 Blender::Application.routes.draw do
 
+  resources :lessons
   resources :user_profiles
 
   get 'user_profile' => 'user_profiles#show'
