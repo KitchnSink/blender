@@ -31,6 +31,7 @@ class LessonsController < ApplicationController
   end
 
   def update
+    puts @lesson
     respond_to do |format|
       if @lesson.update(lesson_params)
         format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
@@ -61,7 +62,10 @@ class LessonsController < ApplicationController
       # params.require(:test_set).permit(:name, tags_attributes: [:id, :name])
       params.require(:lesson).permit(
         :title, :body, :order,
-        sections_attributes: [:id, :body, :metadata, :_destroy, :lesson_id]
+        sections_attributes: [
+          :id, :body, :metadata, :_destroy, :lesson_id,
+          questions_attributes: [:body, :answers, :correct_answer]
+        ]
       )
       # params.require(:lesson).permit(*policy(@lesson || Lesson).permitted_attributes)
     end

@@ -1,10 +1,17 @@
-<fieldset class="section">
+<fieldset class="section" id="<%= f.object.id %>">
   <%= f.label :body %>
   <%= f.text_area :body %>
 
   <%= f.label :metadata %>
   <%= f.text_area :metadata %>
 
-  <%= f.hidden_field :_destroy, :value => f.object._destroy %>
-  <%= link_to "remove", '#', class: "remove_fields button tiny" %>
+  <fieldset>
+    <legend>Questions</legend>
+    <%= f.fields_for :questions do |builder| %>
+      <% render partial: "question_fields", locals: {f: builder, parent: f.object.id} %>
+    <% end %>
+    <%= link_to_add_fields "Add Question", f, :questions, {parent: f.object.id} %>
+  </fieldset>
+
+  <%= link_to "Remove Section", lesson_section_path(@lesson.id, f.object.id), :confirm => "Are you sure you want to delete this section?", :method => :delete, :remote => true, class: "remove_fields right" %>
 </fieldset>

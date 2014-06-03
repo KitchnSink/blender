@@ -1,6 +1,11 @@
 Blender::Application.routes.draw do
 
-  resources :lessons
+  resources :lessons do
+    resources :sections, only: [:show, :destroy] do
+      resources :questions, only: [:show, :destroy]
+    end
+  end
+
   resources :user_profiles,
     only: [:new, :create, :edit, :update],
     path: 'profile'

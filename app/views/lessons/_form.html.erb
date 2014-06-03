@@ -19,16 +19,15 @@
         <%= f.file_field :image %>
       </div>
 
-      <%= f.fields_for :sections do |builder| %>
-        <%= render 'section_fields', f: builder %>
-      <% end %>
-
       <fieldset>
         <legend>Sections</legend>
-        <%= link_to_add_fields "Add Section", f, :sections, "button small" %>
+        <%= f.fields_for :sections do |builder| %>
+          <%= render 'section_fields', f: builder %>
+        <% end %>
+        <%= link_to_add_fields "Add Section", f, :sections %>
       </fieldset>
 
-      <div><%= f.submit "Create Lesson", class: "button" %></div>
+      <div><%= f.submit "Save Lesson", class: "button" %></div>
     <% end %>
 
   </div>

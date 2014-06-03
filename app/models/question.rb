@@ -7,5 +7,4 @@ class Question
 
   embedded_in :section
   has_many :experiences, as: :experienceable
-  belongs_to :section
 end
