@@ -64,7 +64,7 @@ class LessonsController < ApplicationController
         :title, :body, :order,
         sections_attributes: [
           :id, :body, :metadata, :_destroy, :lesson_id,
-          questions_attributes: [:body, :answers, :correct_answer]
+          questions_attributes: [:body, :answers, :correct_answer, :experience]
         ]
       )
       # params.require(:lesson).permit(*policy(@lesson || Lesson).permitted_attributes)
