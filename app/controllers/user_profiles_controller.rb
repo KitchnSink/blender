@@ -26,7 +26,7 @@ class UserProfilesController < ApplicationController
 
     respond_to do |format|
       if current_user.user_profile = @user_profile
-        format.html { redirect_to profile_path, notice: 'User profile was successfully created.' }
+        format.html { redirect_to '/', notice: 'User profile was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user_profile }
       else
         format.html { render action: 'new' }
