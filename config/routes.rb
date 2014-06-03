@@ -1,5 +1,6 @@
 Blender::Application.routes.draw do
 
+  get "dashboard/index"
   resources :user_profiles
 
   get 'user_profile' => 'user_profiles#show'
@@ -25,8 +26,13 @@ Blender::Application.routes.draw do
   #   # root :to => "main#dashboard", :as => "authenticated_root"
   # end
   # You can have the root of your site routed with "root"
-  root 'front#index'
+  authenticated :user do
+    root to: "dashboard#index", as: :authenticated_root
+  end
 
+  unauthenticated do
+    root to: "front#index"
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
