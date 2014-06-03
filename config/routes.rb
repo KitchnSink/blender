@@ -1,11 +1,11 @@
 Blender::Application.routes.draw do
 
   resources :lessons
-  resources :user_profiles
+  resources :user_profiles,
+    only: [:new, :create, :edit, :update],
+    path: 'profile'
 
-  get 'user_profile' => 'user_profiles#show'
-  get 'user_profile/new' => 'user_profiles#new'
-  get 'user_profile/update' => 'user_profiles#edit'
+  get 'profile' => 'user_profiles#show'
 
   # Devise callback
   devise_for :users,
@@ -26,8 +26,13 @@ Blender::Application.routes.draw do
   #   # root :to => "main#dashboard", :as => "authenticated_root"
   # end
   # You can have the root of your site routed with "root"
-  root 'front#index'
+  authenticated :user do
+    root to: "dashboard#index", as: :authenticated_root
+  end
 
+  unauthenticated do
+    root to: "front#index"
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

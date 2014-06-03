@@ -5,6 +5,8 @@ class User
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  after_create :add_player
+
   embeds_one :user_profile
   embeds_one :player
 
@@ -62,8 +64,7 @@ class User
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
-      user.username = auth.info.nickname
-      user.email = "#{user.username}-CHANGE@twitter.user.com"
+      user.email = "#{auth.id}-CHANGE@twitter.user.com"
     end
   end
 
@@ -89,5 +90,12 @@ class User
       super
     end
   end
+
+  private
+
+    def add_player
+      p 'test'
+      self.player = Player.new
+    end
 
 end

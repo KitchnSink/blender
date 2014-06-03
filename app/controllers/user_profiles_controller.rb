@@ -6,7 +6,7 @@ class UserProfilesController < ApplicationController
   # GET /user_profile
   def show
     if !@user_profile
-      redirect_to '/user_profile/new'
+      redirect_to new_user_profile_path
     end
   end
 
@@ -26,7 +26,7 @@ class UserProfilesController < ApplicationController
 
     respond_to do |format|
       if current_user.user_profile = @user_profile
-        format.html { redirect_to '/user_profile', notice: 'User profile was successfully created.' }
+        format.html { redirect_to profile_path, notice: 'User profile was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user_profile }
       else
         format.html { render action: 'new' }
@@ -40,7 +40,7 @@ class UserProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @user_profile.update(user_profile_params)
-        format.html { redirect_to '/user_profile', notice: 'User profile was successfully updated.' }
+        format.html { redirect_to profile_path, notice: 'User profile was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

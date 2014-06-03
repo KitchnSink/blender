@@ -1,13 +1,15 @@
 <div class="row">
-  <div class="columns large-10 large-centered">
-    <%= @lesson.title %><br>
+  <div class="columns large-9">
+    <h2>
     <%= @lesson.body %><br>
     <%= @lesson.order %><br>
     <%= @lesson.image %><br>
-    <% @lesson.sections.each do |section| %>
-      <%= section.body %></br>
-      <%= section.metadata %></br>
-    <% end %>
 
+
+  </div>
+
+  <div class="columns large-3">
+    <h4><%= @lesson.title %></h4>
+    <h4><%= truncate @lesson.body, 50 %></h4>
   </div>
 </div>
