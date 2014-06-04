@@ -1,5 +1,5 @@
 <hr class="section-spacer">
-
+<%= lesson_is_available lesson.id %>
 <div class="lesson-item row <%= 'unavailable' unless lesson_is_available lesson.id %>">
   <div class="columns large-2">
 
@@ -10,7 +10,6 @@
     <% else %>
       <%= render 'lessons/lesson_image', lesson: lesson %>
     <% end %>
-
   </div>
 
   <div class="columns large-10">

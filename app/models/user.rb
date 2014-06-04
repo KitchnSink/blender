@@ -17,7 +17,7 @@ class User
   field :uid,                 type: String, default: ""
   field :role,                type: String, default: ""
 
-  attr_readonly :status, :gamedata, :experience
+  attr_readonly :status, :gamedata, :experience, :update_gamedata
 
   ## Recoverable
   field :reset_password_token,   type: String
@@ -72,6 +72,10 @@ class User
 
   def gamedata
     self.player.gamedata
+  end
+
+  def update_gamedata lesson
+    self.player.update_gamedata lesson
   end
 
   def experience

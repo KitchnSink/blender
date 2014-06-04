@@ -3,5 +3,25 @@
 <section class="masthead">
   <div class="row"><div class="columns">
     <h1>You finished a lesson!</h1>
+    <h3>You earned <span class="pictos">e</span><%= @lesson.player_experience(current_user.player) %> XP</h3>
+
+    <%= @lesson.player_grade(current_user.player) %>
+    <% if @lesson.player_grade(current_user.player) == 100 %>
+
+      <h3>You got a perfect score</h3>
+      <p>You get a bonus heart!</p>
+      <p>Go to the <%= link_to 'next lesson', root_path %>.</p>
+
+    <% elsif @lesson.player_grade(current_user.player) %>
+
+      <h3>You passed!</h3>
+      <p>Go to the <%= link_to 'next lesson', root_path %>, or <%= link_to 'retry this lesson', @lesson %> for extra points.</p>
+
+    <% else %>
+
+      <h3>You failed :(</h3>
+      <p>Don't worry, you can always <%= link_to 'retry this lesson', @lesson %>.</p>
+
+    <% end %>
   </div></div>
 </section>
