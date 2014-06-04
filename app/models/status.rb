@@ -1,8 +1,5 @@
 class Status
   include Mongoid::Document
-  include Mongoid::Attributes::Dynamic
-
-  after_initialize :add_next_available_lesson
 
   field :total_hearts, type: Integer, default: 10
   field :max_hearts, type: Integer, default: 10
@@ -11,8 +8,11 @@ class Status
   embedded_in :player
 
   def decrease_hearts n = 1
-    self.total_hearts = self.total_hearts - n
-    self.save
+    increment_hearts n * -1
+  end
+
+  def increase_hearts n = 1
+    increment_hearts n
   end
 
   def total_experience
@@ -23,9 +23,18 @@ class Status
     self.experience.pluck(:earned).inject(0, :+)
   end
 
+  def update_next_lesson
+    @current_lesson = Lesson.find(self.next_available_lesson)
+    self.update(next_available_lesson: Lesson.asc(:order).skip(@current_lesson.order.to_i + 1)[0].id)
+    self.save
+
+    self.update(next_available_lesson: Lesson.asc(:order).skip(@current_lesson.order.to_i + 1)[0].id)
+  end
+
   private
 
-    def add_next_available_lesson
-      self.next_available_lesson = Lesson.order_by(:order.asc).first.id.to_s
+    def increment_hearts n
+      self.total_hearts = self.total_hearts + n
+      self.save
     end
 end

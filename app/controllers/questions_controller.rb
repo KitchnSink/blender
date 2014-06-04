@@ -21,23 +21,30 @@ class QuestionsController < ApplicationController
     # check if the submitted answer matches the correct one
     if @question.correct_answer == @answer
       # if it does, reward the user all points
-      exp = @question.experiences.new(player: current_user.player, total: @question.experience, earned: @question.experience)
+      exp = Experience.new(player: current_user.player, total: @question.experience, earned: @question.experience, experienceable: @question)
       exp.upsert
       # tell them about that
       flash[:success] = "Correct answer!"
     else
       # if it doesn't, reward the user no earned experience points
-      exp = @question.experiences.new(player: current_user.player, total: @question.experience, earned: 0)
+      exp = Experience.new(player: current_user.player, total: @question.experience, earned: 0, experienceable: @question)
       exp.upsert
       # take a heart from the user
       current_user.status.decrease_hearts
       # tell them about that
       flash[:alert] = "Oops, that was an incorrect answer, that's going to cost you 1 heart."
     end
+    current_user.update_gamedata @lesson
     # redirect back to the next section or summary
-    if @lesson.sections.count >= @section_index + 2
-      redirect_to section_lesson_path @lesson, @section_index + 2
+    if @lesson.sections.count >= @section_index + 1
+      redirect_to section_lesson_path @lesson, @section_index + 1
     else
+      # if the user passed, queue up the next lesson
+      if @lesson.player_grade(current_user.player) > 50
+        current_user.status.update_next_lesson
+        current_user.status.increase_hearts if @lesson.player_grade(current_user.player) == 100
+      end
+
       redirect_to summary_lesson_path @lesson
     end
   end
@@ -56,8 +63,8 @@ class QuestionsController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_section_from_index
-      @section_index = params[:section_index].to_i
-      @section = @lesson.sections.skip(@section_index)[0]
+      @section_index = params[:section_index].to_i + 1
+      @section = @lesson.sections.skip(@section_index - 1)[0]
     end
 
     # Use callbacks to share common setup or constraints between actions.
